@@ -11,6 +11,12 @@ const Projects = () => {
       tags: ['design', 'poster', 'visual-communication']
     },
     {
+      title: 'SEO Portfolio',
+      description: 'Project about imporving SEO for websites using different methods.',
+      url: 'https://www.behance.net/gallery/218866651/AUNGKOMYINT-SEO-PORTFOLIO',
+      tags: ['SEO', 'digital marketing']
+    },
+    {
       title: 'The Identity',
       description: 'Various project about identity and branding.',
       url: 'https://www.behance.net/gallery/218783839/the-identiy-logo-projects/modules/1246874971',

@@ -17,27 +17,21 @@ const Header = () => {
   const socialLinks = [
     { icon: Mail, href: "mailto:myintkoaung4@gmail.com", label: "Email" },
     { icon: Phone, href: "https://wa.me/+66818987873", label: "Phone" },
-    { icon: Linkedin, href: "https://www.linkedin.com/in/yourlinkedin", label: "LinkedIn" },
-    { icon: Github, href: "https://github.com/yourgithub", label: "GitHub" },
-    { icon: Youtube, href: "https://github.com/yourgithub", label: "Youtube" }
+    { icon: Linkedin, href: "https://www.linkedin.com/in/akmnbc/", label: "LinkedIn" },
+    { icon: Github, href: "https://github.com/agkomyint", label: "GitHub" },
+    { icon: Youtube, href: "https://www.youtube.com/@kiskyyt", label: "Youtube" }
   ];
 
   return (
-    <div className="min-h-[45vh] relative overflow-hidden bg-gradient-to-br from-red-900 to-red-700 text-white p-6">
+    <div className="min-h-[30vh] relative overflow-hidden bg-gradient-to-br from-cyan-600 to-indigo-900 text-white p-6">
       {/* Floating particles */}
       {[...Array(20)].map((_, i) => (
         <motion.div
           key={i}
-          className="absolute w-1 h-1 bg-white rounded-full opacity-50"
+          className="absolute w-1 h-1 bg-white rounded-full opacity-40"
           animate={{
-            x: [
-              Math.random() * 1000,
-              Math.random() * 1000
-            ],
-            y: [
-              Math.random() * 200,
-              Math.random() * 200
-            ],
+            x: [Math.random() * 1000, Math.random() * 1000],
+            y: [Math.random() * 200, Math.random() * 200],
           }}
           transition={{
             duration: Math.random() * 3 + 2,
@@ -54,7 +48,7 @@ const Header = () => {
           initial={{ y: -50, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.5 }}
-          className="text-3xl font-bold mb-4"
+          className="text-2xl font-bold mb-4 text-opacity-80"
         >
           Hi, it's me
         </motion.h1>
@@ -63,7 +57,7 @@ const Header = () => {
         <motion.h2
           className="text-3xl font-extrabold flex flex-wrap justify-center gap-1 mb-6"
           style={{
-            textShadow: '0 0 10px rgba(255,255,255,0.3)'
+            textShadow: '0 0 15px rgba(255,255,255,0.5)'
           }}
         >
           {name.map((letter, index) => (
@@ -76,7 +70,7 @@ const Header = () => {
               }}
               transition={{ duration: 0.3 }}
               className="inline-block cursor-pointer"
-              whileHover={{ scale: 1.2, color: '#ffd700' }}
+              whileHover={{ scale: 1.2, color: '#FFD700' }}
             >
               {letter}
             </motion.span>
@@ -85,7 +79,7 @@ const Header = () => {
 
         {/* Social links */}
         <motion.div 
-          className="flex gap-3 mb-6"
+          className="flex gap-3 mb-9"
           initial={{ scale: 0 }}
           animate={{ scale: 1 }}
           transition={{ delay: 0.5, type: "spring" }}
@@ -101,74 +95,50 @@ const Header = () => {
                 target="_blank"
                 className="block p-3 bg-white/10 rounded-full backdrop-blur-sm hover:bg-white/20 transition-all"
               >
-                <Icon className="w-5 h-5" />
+                <Icon className="w-5 h-5 text-gray-200" />
               </Link>
             </motion.div>
           ))}
         </motion.div>
 
-        {/* Enhanced Download CV Button with Wave Effect */}
-        <motion.div
-          className="relative"
-          whileHover="hover"
-          whileTap="tap"
-        >
+        {/* Download CV Button with Liquid Background */}
+        <motion.div className="relative">
           <motion.a
             href="/aungkomyintCV%202_8_2025.pdf"
             download
-            className="relative inline-block overflow-hidden rounded-xl px-8 py-3 bg-white text-black font-semibold"
-            variants={{
-              hover: {
-                scale: 1.05,
-                transition: {
-                  duration: 0.2
-                }
-              },
-              tap: {
-                scale: 0.95
-              }
-            }}
+            className="relative inline-block overflow-hidden rounded-xl px-8 py-3 font-semibold"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
           >
-            <span className="relative z-10">Download CV</span>
-            {/* Wave animation overlay */}
+            <span className="relative z-10 text-white">Download CV</span>
+            {/* Liquid Background Animation */}
             <motion.div
-              className="absolute inset-0 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500"
-              variants={{
-                hover: {
-                  x: ["100%", "-100%"],
-                  transition: {
-                    repeat: Infinity,
-                    duration: 1,
-                    ease: "linear"
-                  }
-                }
-              }}
+              className="absolute inset-0"
               style={{
-                opacity: 0.7,
-                mixBlendMode: "color"
-              }}
-            />
-            {/* Shine effect */}
-            <motion.div
-              className="absolute inset-0 bg-white"
-              variants={{
-                hover: {
-                  x: ["-100%", "100%"],
-                  transition: {
-                    repeat: Infinity,
-                    duration: 1.5,
-                    ease: "linear"
-                  }
-                }
-              }}
-              style={{
-                opacity: 0.2,
-                skewX: -20
+                background: "linear-gradient(270deg, #6a11cb, #2575fc, #6a11cb)",
+                backgroundSize: "400% 400%",
+                // The CSS animation below gives the liquid effect by shifting the gradient continuously
+                animation: "liquidAnimation 8s ease infinite"
               }}
             />
           </motion.a>
         </motion.div>
       </div>
+
+      {/* CSS Keyframes for Liquid Animation */}
+      <style jsx>{`
+        @keyframes liquidAnimation {
+          0% {
+            background-position: 0% 50%;
+          }
+          50% {
+            background-position: 100% 50%;
+          }
+          100% {
+            background-position: 0% 50%;
+          }
+        }
+      `}</style>
     </div>
   );
 };

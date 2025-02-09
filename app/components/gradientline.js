@@ -13,7 +13,7 @@ const GradientLine = () => {
     const interval = setInterval(() => {
       hue = (hue + 1) % 360;
       setGradient(
-        `linear-gradient(90deg, hsl(${hue}, 60%, 80%), hsl(${(hue + 60) % 360}, 60%, 80%), hsl(${(hue + 120) % 360}, 60%, 80%), hsl(${(hue + 180) % 360}, 60%, 80%), hsl(${(hue + 240) % 360}, 60%, 80%), hsl(${(hue + 300) % 360}, 60%, 80%))`
+        `linear-gradient(90deg, hsl(${hue}, 100%, 60%), hsl(${(hue + 60) % 360}, 100%, 60%), hsl(${(hue + 120) % 360}, 100%, 60%), hsl(${(hue + 180) % 360}, 100%, 60%), hsl(${(hue + 240) % 360}, 100%, 60%), hsl(${(hue + 300) % 360}, 100%, 60%))`
       );
     }, 50);
     return () => clearInterval(interval);
@@ -21,7 +21,7 @@ const GradientLine = () => {
 
   return (
     <motion.div
-      className="w-full h-3"
+      className="w-full h-1"
       style={{ background: gradient }}
       animate={{ opacity: [0.7, 1, 0.7] }}
       transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
