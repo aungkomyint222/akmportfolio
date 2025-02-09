@@ -17,7 +17,7 @@ export const metadata = {
   description: 'Explore Aung Ko Myint’s portfolio, showcasing web development, full-stack skills, and tech passion.',
   keywords: 'Aung Ko Myint, aungkomyint portfolio, portfolio, web development, full-stack development, tech portfolio, web designer, PHP developer, Laravel, JavaScript developer',
   verification: {
-    google: 'VWwnIh938SNj8xJpvYciJmAuO2amGInxRW-GiLj93zM', // Replace with your Google verification code
+    google: 'qq5LMRxX1OqdBEt2g9cspGhC0OC21pDPxDf-CtyDbjY', // Replace with your Google verification code
   },
 };
 
