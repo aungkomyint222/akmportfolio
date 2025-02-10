@@ -1,3 +1,4 @@
+'use client'
 import React, { useState, useEffect } from 'react';
 import { motion } from "framer-motion";
 import Link from "next/link";
@@ -122,6 +123,16 @@ const Header = () => {
               }}
             />
           </motion.a>
+        </motion.div>
+
+        {/* Go to About Button */}
+        <motion.div className="mt-6">
+          <Link href="/aboutme" className="inline-block px-8 py-3 bg-black-500 text-white font-semibold rounded-lg hover:bg-black-400 transition duration-300">
+            
+              About Me
+            
+          </Link>
+          
         </motion.div>
       </div>
 

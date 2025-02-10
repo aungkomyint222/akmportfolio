@@ -1,3 +1,4 @@
+'use client'
 import React, { useState, useRef } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Mousewheel, Navigation, EffectFade } from 'swiper/modules';
