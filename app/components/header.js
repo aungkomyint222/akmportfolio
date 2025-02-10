@@ -132,6 +132,11 @@ const Header = () => {
               About Me
             
           </Link>
+          <Link href="/count-mate" className="inline-block px-8 py-3 bg-black-500 text-white font-semibold rounded-lg hover:bg-black-400 transition duration-300">
+            
+            Count Mate
+          
+        </Link>
           
         </motion.div>
       </div>

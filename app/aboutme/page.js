@@ -2,7 +2,7 @@ import Link from 'next/link';
 
 export async function generateMetadata() {
   return {
-    title: "About Us - Aung Ko Myint Portfolio",
+    title: "About Me - Aung Ko Myint Portfolio",
     description:
       "Learn more about Aung Ko Myint, a passionate web designer and developer, and explore innovative solutions in coding, design, and problem-solving.",
     keywords:
@@ -11,11 +11,10 @@ export async function generateMetadata() {
 }
 
 export default function AboutPage() {
-  console.log("Running on:", typeof window === "undefined" ? "Server" : "Client");
-
+  
   return (
     <div className="container mx-auto p-6">
-      <h1 className="text-3xl font-bold text-center text-white-900 mb-6">About Us</h1>
+      <h1 className="text-3xl font-bold text-center text-white-900 mb-6">About Aung Ko Myint</h1>
       <p className="text-lg leading-relaxed mb-4">
         Welcome to the official website of <span className="font-semibold">Aung Ko Myint</span>, your go-to web designer and developer dedicated to building exceptional digital experiences. With a strong foundation in modern web technologies and an eye for detail, Aung Ko Myint has been helping businesses, creators, and individuals elevate their online presence.
       </p>
