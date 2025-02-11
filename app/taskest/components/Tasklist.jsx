@@ -2,28 +2,33 @@
 import React, { useState, useEffect } from 'react';
 import { Plus, Play, CheckCircle, Clock, Loader, Trash2, AlertCircle } from 'lucide-react';
 import { v4 as uuidv4 } from 'uuid';
+import { openDB } from "idb";
 
 // =======================
 // IndexedDB Helper Functions
 // =======================
-import { openDB } from "idb";
 
-// Open database once and reuse it
-const dbPromise = openDB("TaskManagerDB", 1, {
-  upgrade(db) {
-    if (!db.objectStoreNames.contains("tasks")) {
-      db.createObjectStore("tasks", { keyPath: "id" });
-    }
-  },
-});
+let dbPromise;
+
+if (typeof window !== "undefined") {
+  dbPromise = openDB("TaskManagerDB", 1, {
+    upgrade(db) {
+      if (!db.objectStoreNames.contains("tasks")) {
+        db.createObjectStore("tasks", { keyPath: "id" });
+      }
+    },
+  });
+}
 
 // Get all tasks
 export async function getAllTasks() {
+  if (!dbPromise) return [];
   return (await dbPromise).getAll("tasks");
 }
 
 // Save all tasks (replace existing)
 export async function saveAllTasks(tasks) {
+  if (!dbPromise) return;
   const db = await dbPromise;
   const tx = db.transaction("tasks", "readwrite");
   const store = tx.objectStore("tasks");
@@ -36,6 +41,7 @@ export async function saveAllTasks(tasks) {
 
 // Clear all tasks
 export async function clearIndexedDBTasks() {
+  if (!dbPromise) return;
   const db = await dbPromise;
   const tx = db.transaction("tasks", "readwrite");
   await tx.objectStore("tasks").clear();

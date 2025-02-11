@@ -41,10 +41,10 @@ const Nav = () => {
 
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center space-x-8">
-            {['about', 'tasks', 'gallery', 'projects'].map((item) => (
+            {['aboutme', 'taskest'].map((item) => (
               <Link 
                 key={item}
-                href={`#${item}`} 
+                href={`${item}`} 
                 className={`text-sm font-medium transition-all duration-300 ${
                   scrolled
                     ? 'text-black hover:text-blue-600'
