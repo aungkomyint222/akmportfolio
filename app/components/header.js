@@ -5,7 +5,7 @@ import Link from "next/link";
 import { Mail, Linkedin, Github, Phone, Youtube } from "lucide-react";
 
 const Header = () => {
-  const name = "AUNGKOMYINT".split("");
+  const name = "AKM EXPERIENCE".split("");
   const [activeIndex, setActiveIndex] = useState(0);
 
   useEffect(() => {
@@ -49,14 +49,14 @@ const Header = () => {
           initial={{ y: -50, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.5 }}
-          className="text-2xl font-bold mb-4 text-opacity-80"
+          className="text-2xl font-bold mb-2 text-opacity-80"
         >
-          Hi, it's me
+          Welcome to the
         </motion.h1>
 
         {/* Animated name */}
         <motion.h2
-          className="text-3xl font-extrabold flex flex-wrap justify-center gap-1 mb-6"
+          className="text-2xl font-extrabold flex flex-wrap justify-center gap-1 mb-6"
           style={{
             textShadow: '0 0 15px rgba(255,255,255,0.5)'
           }}
@@ -80,7 +80,7 @@ const Header = () => {
 
         {/* Social links */}
         <motion.div 
-          className="flex gap-3 mb-9"
+          className="flex gap-3 mb-20"
           initial={{ scale: 0 }}
           animate={{ scale: 1 }}
           transition={{ delay: 0.5, type: "spring" }}
@@ -102,7 +102,8 @@ const Header = () => {
           ))}
         </motion.div>
 
-        {/* Download CV Button with Liquid Background */}
+        {/* Download CV Button with Liquid Background 
+        
         <motion.div className="relative">
           <motion.a
             href="/aungkomyintCV%202_8_2025.pdf"
@@ -112,7 +113,7 @@ const Header = () => {
             whileTap={{ scale: 0.95 }}
           >
             <span className="relative z-10 text-white">Download CV</span>
-            {/* Liquid Background Animation */}
+         
             <motion.div
               className="absolute inset-0"
               style={{
@@ -125,19 +126,38 @@ const Header = () => {
           </motion.a>
         </motion.div>
 
-        {/* Go to About Button */}
+        
+        
+        */}
+        <motion.div className="mt-6">
+  <Link 
+    href="/taskest" 
+    className="inline-block px-8 py-3 bg-black-500 text-white font-semibold rounded-lg hover:bg-black-400 transition duration-300" 
+    legacyBehavior
+  >
+    Introducing Taskest | The best Pomodoro Task Manager. Check it now!
+  </Link>
+</motion.div>
+
+        {/*
         <motion.div className="mt-6">
           <Link href="/aboutme" className="inline-block px-8 py-3 bg-black-500 text-white font-semibold rounded-lg hover:bg-black-400 transition duration-300">
             
               About Me
             
           </Link>
+          <Link href="/taskest" className="inline-block px-8 py-3 bg-black-500 text-white font-semibold rounded-lg hover:bg-black-400 transition duration-300" legacyBehavior>
+            
+              Taskest | Pomodoro Task manager 
+            
+          </Link>
         
           
         </motion.div>
+         Go to About Button */}
       </div>
 
-      {/* CSS Keyframes for Liquid Animation */}
+      {/* CSS Keyframes for Liquid Animation 
       <style jsx>{`
         @keyframes liquidAnimation {
           0% {
@@ -151,6 +171,8 @@ const Header = () => {
           }
         }
       `}</style>
+
+      */}
     </div>
   );
 };

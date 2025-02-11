@@ -12,15 +12,17 @@ export default function Home() {
   return (
     
     <main className="min-h-screen">
-        <MagnifyingGlassCursor />
+     
       <TrackPageView /> {/* Runs only on the client */}
     
       <Header />
+      
       <ComputerLove />
     
       <GradientLine />
       <Story />
-      <GalleryPage />
+       {/* <GalleryPage />*/}
+     
       <Projects />
     </main>
   );

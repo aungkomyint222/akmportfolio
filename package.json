@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "idb": "^8.0.2",
     "lucide-react": "^0.475.0",
     "motion": "^12.4.1",
     "next": "15.1.6",
@@ -16,7 +17,8 @@
     "react-dom": "^19.0.0",
     "react-typed": "^2.0.12",
     "scroll": "^3.0.1",
-    "swiper": "^11.2.2"
+    "swiper": "^11.2.2",
+    "uuid": "^11.0.5"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",

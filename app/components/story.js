@@ -1,5 +1,5 @@
 'use client'
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useCallback } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Mousewheel, Navigation, EffectFade } from 'swiper/modules';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
@@ -11,6 +11,7 @@ const Story = () => {
   const swiperRef = useRef(null);
   const [currentIndex, setCurrentIndex] = useState(0);
 
+  // Memoize stories array to prevent unnecessary re-renders
   const stories = [
     {
       age: "8",
@@ -74,63 +75,62 @@ const Story = () => {
     },
   ];
 
-  const handlePrev = () => {
-    if (swiperRef.current && swiperRef.current.swiper) {
-      swiperRef.current.swiper.slidePrev();
-    }
-  };
 
-  const handleNext = () => {
-    if (swiperRef.current && swiperRef.current.swiper) {
-      swiperRef.current.swiper.slideNext();
-    }
-  };
+  // Memoize handlers
+  const handlePrev = useCallback(() => {
+    swiperRef.current?.swiper?.slidePrev();
+  }, []);
 
-  const handleSlideClick = (index) => {
-    if (swiperRef.current && swiperRef.current.swiper) {
-      swiperRef.current.swiper.slideTo(index);
-    }
-  };
+  const handleNext = useCallback(() => {
+    swiperRef.current?.swiper?.slideNext();
+  }, []);
+
+  const handleSlideClick = useCallback((index) => {
+    swiperRef.current?.swiper?.slideTo(index);
+  }, []);
 
   return (
-    <div className=" bg-gradient-to-br from-indigo-900 to-purple-900 text-white py-8">
+    <div className="bg-gray-900 text-white pt-8">
       <div className="max-w-4xl mx-auto px-4">
-        <div className="mb-8 text-center">
+        <div className="mb-4 text-center">
           <h1 className="text-2xl font-bold mb-4">My Journey in Tech</h1>
-          <p className="text-lg text-indigo-200">A true passion and a path of choice</p>
+          <p className="text-lg text-white">Failure is not the end; persistence leads to true success.</p>
         </div>
 
         <div className="relative">
-          {/* Custom Navigation Buttons */}
+          {/* Navigation Buttons */}
           <button 
-            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 z-10 bg-white/10 p-2 rounded-full backdrop-blur-sm hover:bg-white/20 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 z-10 bg-white/80 p-2 rounded-full shadow-md hover:bg-white transition-all disabled:opacity-30 disabled:cursor-not-allowed"
             onClick={handlePrev}
             disabled={currentIndex === 0}
+            aria-label="Previous slide"
           >
-            <ChevronLeft className="w-6 h-6" />
+            <ChevronLeft className="w-6 h-6 text-gray-700" />
           </button>
           <button 
-            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 z-10 bg-white/10 p-2 rounded-full backdrop-blur-sm hover:bg-white/20 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 z-10 bg-white/80 p-2 rounded-full shadow-md hover:bg-white transition-all disabled:opacity-30 disabled:cursor-not-allowed"
             onClick={handleNext}
             disabled={currentIndex === stories.length - 1}
+            aria-label="Next slide"
           >
-            <ChevronRight className="w-6 h-6" />
+            <ChevronRight className="w-6 h-6 text-gray-700" />
           </button>
 
           {/* Progress Indicators */}
-          <div className="flex justify-between mb-8 relative">
-            <div className="absolute top-1/2 left-0 right-0 h-0.5 bg-indigo-700 -translate-y-1/2"></div>
+          <div className="flex justify-between mb-4 relative">
+            <div className="absolute top-1/2 left-0 right-0 h-0.5 bg-gray-200 -translate-y-1/2" />
             {stories.map((_, idx) => (
               <button
                 key={idx}
                 onClick={() => handleSlideClick(idx)}
-                className={`w-4 h-4 rounded-full z-10 transition-all duration-300 cursor-pointer hover:ring-4 hover:ring-indigo-300 hover:ring-opacity-50 ${
+                className={`w-3 h-3 rounded-full z-10 transition-all duration-300 ${
                   idx === currentIndex
-                    ? 'bg-indigo-400 ring-4 ring-indigo-300 ring-opacity-50'
+                    ? 'bg-white scale-125'
                     : idx < currentIndex
-                    ? 'bg-indigo-500'
-                    : 'bg-indigo-800'
+                    ? 'bg-gray-400'
+                    : 'bg-gray-300'
                 }`}
+                aria-label={`Go to slide ${idx + 1}`}
               />
             ))}
           </div>
@@ -145,28 +145,31 @@ const Story = () => {
               sensitivity: 1,
             }}
             effect="fade"
+            fadeEffect={{
+              crossFade: true
+            }}
             onSlideChange={(swiper) => setCurrentIndex(swiper.activeIndex)}
             modules={[Mousewheel, Navigation, EffectFade]}
-            speed={500}
+            speed={300}
             threshold={15}
           >
             {stories.map((story, idx) => (
               <SwiperSlide key={idx}>
-                <div className="bg-black backdrop-blur-md rounded-xl p-8 border border-white/10">
-                  <div className="flex items-center justify-between mb-6">
-                    <span className="text-2xl font-bold text-indigo-300">Age {story.age}</span>
-                    <span className="px-4 py-2 bg-indigo-500/20 rounded-full text-indigo-200">
+                <div className="bg-black rounded-xl p-8 shadow-lg">
+                  <div className="flex items-center justify-between mb-3">
+                    <span className="text-2xl font-bold ">Age {story.age}</span>
+                    <span className="px-4 py-2 bg-gray-100 rounded-full text-gray-600 text-sm">
                       {story.highlight}
                     </span>
                   </div>
-                  <h2 className="text-xl font-bold mb-4 text-indigo-100">{story.title}</h2>
-                  <p className="text-lg leading-relaxed text-indigo-100/90">{story.text}</p>
+                  <h2 className="text-xl font-bold mb-4 ">{story.title}</h2>
+                  <p className="text-lg leading-relaxed">{story.text}</p>
                 </div>
               </SwiperSlide>
             ))}
           </Swiper>
 
-          <div className="mt-3 text-center text-indigo-200 text-sm">
+          <div className=" text-center text-gray-500 text-sm">
             Use arrow keys or swipe to navigate through my journey
           </div>
         </div>
