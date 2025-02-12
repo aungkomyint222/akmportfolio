@@ -7,7 +7,6 @@ const Nav = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
-  // Handle scroll effect for the nav background
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
@@ -16,20 +15,6 @@ const Nav = () => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
-
-  // Disable background scrolling when mobile menu is open
-  useEffect(() => {
-    if (isOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'auto';
-    }
-
-    // Cleanup if the component unmounts
-    return () => {
-      document.body.style.overflow = 'auto';
-    };
-  }, [isOpen]);
 
   return (
     <nav 
@@ -41,16 +26,15 @@ const Nav = () => {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
-          {/* Logo */}
           <Link 
             href="/" 
             className={`text-xl font-bold transition-all duration-300 ${
               scrolled
                 ? 'bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent'
-                : 'text-white-900'
+                : 'text-white'
             } hover:opacity-80`}
           >
-            akm's portfolio
+            akm&apos;s portfolio
           </Link>
 
           {/* Desktop Menu */}
@@ -62,7 +46,7 @@ const Nav = () => {
                 className={`text-sm font-medium transition-all duration-300 ${
                   scrolled
                     ? 'text-black hover:text-blue-600'
-                    : 'text-white hover:text-gray-600'
+                    : 'text-white hover:text-gray-200'
                 }`}
               >
                 {item.charAt(0).toUpperCase() + item.slice(1)}
@@ -74,8 +58,8 @@ const Nav = () => {
           <button
             className={`md:hidden p-2 rounded-lg transition-colors ${
               scrolled 
-                ? 'hover:bg-gray-100' 
-                : 'hover:bg-gray-200'
+                ? 'text-black hover:bg-gray-100' 
+                : 'text-white hover:bg-white/10'
             }`}
             onClick={() => setIsOpen(!isOpen)}
             aria-label="Toggle menu"
@@ -83,42 +67,28 @@ const Nav = () => {
             {isOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
         </div>
-      </div>
 
-      {/* Background Overlay for Dimming */}
-      {isOpen && (
-        <div 
-          className="fixed inset-0 bg-black opacity-50 z-30"
-          onClick={() => setIsOpen(false)}
-        />
-      )}
-
-      {/* Mobile Menu Slider */}
-      <div 
-        className="md:hidden fixed top-0 right-0 h-full w-64 bg-white shadow-xl transition-transform duration-300 z-40"
-        style={{ transform: isOpen ? 'translateX(0)' : 'translateX(100%)' }}
-      >
-        <div className="p-4">
-          <button 
-            onClick={() => setIsOpen(false)} 
-            className="mb-4 p-2 rounded-lg hover:bg-gray-200"
-            aria-label="Close menu"
-          >
-            <X size={24} />
-          </button>
-          <nav className="flex flex-col space-y-4">
-            {['aboutme', 'taskest'].map((item) => (
-              <Link 
-                key={item}
-                href={`/${item}`} 
-                onClick={() => setIsOpen(false)}
-                className="text-lg font-medium text-black hover:text-blue-600 transition-colors"
-              >
-                {item.charAt(0).toUpperCase() + item.slice(1)}
-              </Link>
-            ))}
-          </nav>
-        </div>
+        {/* Mobile Dropdown Menu */}
+        {isOpen && (
+          <div className="md:hidden">
+            <div className="px-2 pt-2 pb-3 space-y-1">
+              {['aboutme', 'taskest'].map((item) => (
+                <Link 
+                  key={item}
+                  href={`/${item}`} 
+                  onClick={() => setIsOpen(false)}
+                  className={`block px-3 py-2 rounded-md text-base font-medium ${
+                    scrolled
+                      ? 'text-black hover:text-blue-600 hover:bg-gray-100'
+                      : 'text-white hover:bg-white/10'
+                  }`}
+                >
+                  {item.charAt(0).toUpperCase() + item.slice(1)}
+                </Link>
+              ))}
+            </div>
+          </div>
+        )}
       </div>
     </nav>
   );
