@@ -1,6 +1,7 @@
 import Header from './components/header';
 import  MagnifyingGlassCursor from './components/test';
 import  GalleryPage from './components/gallery';
+import   Achievements from './components/achievment';
 import ComputerLove from './components/computerlove';
 import Story from './components/story';
 import Projects from './components/projects';
@@ -16,7 +17,7 @@ export default function Home() {
       <TrackPageView /> {/* Runs only on the client */}
     
       <Header />
-      
+      <Achievements/>
       <ComputerLove />
     
       <GradientLine />
