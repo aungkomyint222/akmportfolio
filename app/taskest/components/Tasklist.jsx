@@ -1,6 +1,6 @@
 'use client'
 import React, { useState, useEffect } from 'react';
-import { Plus, Play, CheckCircle, Clock, Loader, Trash2, AlertCircle } from 'lucide-react';
+import { Plus, Play, CheckCircle, Clock, Loader, Trash2, AlertCircle, RefreshCcw} from 'lucide-react';
 import { v4 as uuidv4 } from 'uuid';
 import { openDB } from "idb";
 
@@ -160,34 +160,42 @@ const TaskManager = () => {
   };
 
   const chooseTask = (taskId) => {
-    const startTime = new Date();
     setTasks(prev =>
-      prev.map(task => {
-        if (task.id === taskId) {
-          return {
-            ...task,
-            status: 'ongoing',
-            startTime: startTime.toISOString(),
-            timeLeft: task.duration * 60,
-            isRunning: false,
-          };
-        }
-        return task;
-      })
+      prev.map(task =>
+        task.id === taskId
+          ? {
+              ...task,
+              status: 'ongoing',
+              timeLeft: task.duration * 60, // Keep timeLeft unchanged until the timer starts
+              isRunning: false, // Ensure it's not running yet
+            }
+          : task
+      )
     );
     setActiveTab('ongoing');
   };
+  
 
-  // Updated startTimer: computes elapsed time from startTime and updates timeLeft accordingly.
   const startTimer = (taskId) => {
     if (timer) {
       clearInterval(timer);
     }
-    // Mark the task as running
+  
+    // Get the start time when the button is clicked
+    const startTime = new Date().toISOString();
+  
     setTasks(prev =>
-      prev.map(task => task.id === taskId ? { ...task, isRunning: true } : task)
+      prev.map(task =>
+        task.id === taskId
+          ? {
+              ...task,
+              isRunning: true,
+              startTime, // Set the start time here instead
+            }
+          : task
+      )
     );
-
+  
     const interval = setInterval(() => {
       setTasks(prev =>
         prev.map(task => {
@@ -213,15 +221,17 @@ const TaskManager = () => {
         })
       );
     }, 1000);
-
+  
     setTimer(interval);
   };
+  
 
   const completeTask = (taskId) => {
     if (timer) {
       clearInterval(timer);
       setTimer(null);
     }
+  
     setTasks(prev =>
       prev.map(task => {
         if (task.id === taskId) {
@@ -230,6 +240,7 @@ const TaskManager = () => {
             status: 'done',
             isRunning: false,
             timeLeft: 0,
+            startTime: task.startTime || new Date().toISOString(), // If no startTime, set it now
             endTime: new Date().toISOString()
           };
         }
@@ -237,6 +248,7 @@ const TaskManager = () => {
       })
     );
   };
+  
 
   const clearAllTasks = async () => {
     setTasks([]);
@@ -254,6 +266,25 @@ const TaskManager = () => {
     return `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
   };
 
+  const duplicateTask = (taskId) => {
+    setTasks(prevTasks => {
+      const taskToCopy = prevTasks.find(task => task.id === taskId);
+      if (!taskToCopy) return prevTasks;
+  
+      const newTask = {
+        ...taskToCopy,
+        id: Date.now(), // Generate a unique ID for the new task
+        status: 'coming', // Make it a new "coming" task
+        timeLeft: taskToCopy.duration * 60, // Reset timer
+        startTime: null,
+        endTime: null,
+        isRunning: false
+      };
+  
+      return [...prevTasks, newTask]; // Add the new task while keeping the old one
+    });
+  };
+  
   const hasOngoingTask = tasks.some(task => task.status === 'ongoing');
 
   return (
@@ -402,10 +433,20 @@ const TaskManager = () => {
               <div className="text-sm text-gray-500">
                 Ended: {new Date(task.endTime).toLocaleTimeString()}
               </div>
+              
+              {/* "Again" button to create a duplicate in "coming" */}
+              <button
+                className="w-full bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700 transition-colors mt-3 flex items-center justify-center gap-2"
+                onClick={() => duplicateTask(task.id)}
+              >
+                <RefreshCcw size={20} />
+                Again
+              </button>
             </div>
           ))}
         </div>
       )}
+
     </div>
   );
 };
