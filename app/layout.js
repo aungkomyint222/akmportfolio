@@ -2,7 +2,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Script from "next/script";
 import Nav from './components/nav'
-
+import Head from "next/head";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -14,6 +14,7 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
   display: "swap",
 });
+
 
 export const metadata = {
   metadataBase: new URL("https://www.akmweb.online"), // ✅ Fix for Open Graph & Twitter images
@@ -52,12 +53,17 @@ export const metadata = {
   alternates: {
     canonical: "https://www.akmweb.online", // ✅ Auto-generates <link rel="canonical">
   },
+ 
 };
 
 export default function RootLayout({ children }) {
+  
   return (
     <html lang="en">
-      <head>
+      <Head>
+
+      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
+
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -80,8 +86,9 @@ export default function RootLayout({ children }) {
             }),
           }}
         />
-      
-      </head>
+
+   
+        </Head>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
       <Nav />
         {children}

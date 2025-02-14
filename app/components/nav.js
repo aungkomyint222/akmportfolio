@@ -28,7 +28,7 @@ const Nav = () => {
         <div className="flex justify-between items-center h-16">
           <Link
             href="/"
-            className={`text-xl font-bold transition-all duration-300 ${
+            className={`text-2xs font-bold transition-all duration-300 ${
               scrolled
                 ? 'bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent'
                 : 'text-white'

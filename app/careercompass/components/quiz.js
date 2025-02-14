@@ -238,19 +238,19 @@ export default function Quiz() {
 
   return (
     <div className="min-h-screen bg-gradient-to-r from-blue-50 to-indigo-50 p-2 flex items-center justify-center">
-      <div className="w-full max-w-2xl bg-white rounded-xl shadow-lg p-8">
-        <div className="flex items-center mb-6">
-          <Brain className="w-8 h-8 text-indigo-600 mr-3" />
-          <h1 className="text-xl font-bold text-gray-900">Career Compass</h1>
-          <div className="text-sm text-gray-500 ml-auto">
+      <div className="w-full max-w-2xl bg-white rounded-xl shadow-lg p-4">
+        <div className="flex items-center mb-2">
+          <Brain className="w-16 h-16 text-indigo-600 mr-3" />
+          <h1 className="text-3xl font-bold text-gray-900">Career Compass</h1>
+         
+        </div>
+
+        <div className="text-sm text-gray-500 ml-auto mb-8 text-center">
   <span>Powered by </span>
   <Link href="https://huggingface.co/spaces/aungkomyint/jobmatch" passHref className="text-indigo-600 hover:text-indigo-800">
    akm's ai
   </Link>
 </div>
-        </div>
-
-       
         <div className="w-full bg-gray-200 rounded-full h-2 mb-4">
           <div
             className="bg-indigo-600 h-2 rounded-full transition-all duration-300"
@@ -280,6 +280,8 @@ export default function Quiz() {
             </button>
           ))}
         </div>
+
+
       </div>
     </div>
   );
