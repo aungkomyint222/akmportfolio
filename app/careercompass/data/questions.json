@@ -1,0 +1,246 @@
+{
+  "questions": [
+    {
+      "id": 1,
+      "question": "How do you prefer to solve problems?",
+      "options": [
+        {
+          "label": "I use logic and systematic thinking",
+          "traits": { "analytical": 3 }
+        },
+        {
+          "label": "I use technical tools and data",
+          "traits": { "technical": 3 }
+        },
+        {
+          "label": "I follow step-by-step procedures",
+          "traits": { "methodical": 3 }
+        },
+        {
+          "label": "I brainstorm creative ideas",
+          "traits": { "creative": 3 }
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "question": "What motivates you the most at work?",
+      "options": [
+        {
+          "label": "I like innovative projects",
+          "traits": { "innovative": 3 }
+        },
+        {
+          "label": "I enjoy facing new challenges",
+          "traits": { "adaptable": 3 }
+        },
+        {
+          "label": "I enjoy working with others",
+          "traits": { "social": 3 }
+        },
+        {
+          "label": "I like leading teams",
+          "traits": { "leadership": 3 }
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "question": "How do you approach learning new skills?",
+      "options": [
+        {
+          "label": "I learn by understanding others",
+          "traits": { "empathetic": 3 }
+        },
+        {
+          "label": "I focus on details and follow tutorials",
+          "traits": { "detail_oriented": 3 }
+        },
+        {
+          "label": "I stay calm under pressure",
+          "traits": { "stress_tolerant": 3 }
+        },
+        {
+          "label": "I break things down logically",
+          "traits": { "analytical": 3 }
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "question": "How do you prefer to communicate complex ideas?",
+      "options": [
+        {
+          "label": "I use diagrams and data",
+          "traits": { "technical": 3 }
+        },
+        {
+          "label": "I write detailed reports",
+          "traits": { "methodical": 3 }
+        },
+        {
+          "label": "I give creative presentations",
+          "traits": { "creative": 3 }
+        },
+        {
+          "label": "I share new and bold ideas",
+          "traits": { "innovative": 3 }
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "question": "What type of work environment energizes you?",
+      "options": [
+        {
+          "label": "I thrive in a fast-changing environment",
+          "traits": { "adaptable": 3 }
+        },
+        {
+          "label": "I enjoy strong teamwork",
+          "traits": { "social": 3 }
+        },
+        {
+          "label": "I like to take charge",
+          "traits": { "leadership": 3 }
+        },
+        {
+          "label": "I support my colleagues",
+          "traits": { "empathetic": 3 }
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "question": "When planning a project, what's your focus?",
+      "options": [
+        {
+          "label": "I pay attention to details",
+          "traits": { "detail_oriented": 3 }
+        },
+        {
+          "label": "I plan for stress or crises",
+          "traits": { "stress_tolerant": 3 }
+        },
+        {
+          "label": "I create logical plans",
+          "traits": { "analytical": 3 }
+        },
+        {
+          "label": "I use technical tools",
+          "traits": { "technical": 3 }
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "question": "How do you tackle creative challenges?",
+      "options": [
+        {
+          "label": "I use a step-by-step method",
+          "traits": { "methodical": 3 }
+        },
+        {
+          "label": "I think creatively",
+          "traits": { "creative": 3 }
+        },
+        {
+          "label": "I look for innovative solutions",
+          "traits": { "innovative": 3 }
+        },
+        {
+          "label": "I stay flexible",
+          "traits": { "adaptable": 3 }
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "question": "How do you contribute in team settings?",
+      "options": [
+        {
+          "label": "I build strong team bonds",
+          "traits": { "social": 3 }
+        },
+        {
+          "label": "I lead when needed",
+          "traits": { "leadership": 3 }
+        },
+        {
+          "label": "I listen to team members",
+          "traits": { "empathetic": 3 }
+        },
+        {
+          "label": "I notice key details",
+          "traits": { "detail_oriented": 3 }
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "question": "How do you react to unexpected problems?",
+      "options": [
+        {
+          "label": "I stay calm",
+          "traits": { "stress_tolerant": 3 }
+        },
+        {
+          "label": "I use logic",
+          "traits": { "analytical": 3 }
+        },
+        {
+          "label": "I use technical tools",
+          "traits": { "technical": 3 }
+        },
+        {
+          "label": "I follow a step-by-step fix",
+          "traits": { "methodical": 3 }
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "question": "How do you express your creative side?",
+      "options": [
+        {
+          "label": "I work on creative projects",
+          "traits": { "creative": 3 }
+        },
+        {
+          "label": "I explore new ideas",
+          "traits": { "innovative": 3 }
+        },
+        {
+          "label": "I stay flexible with creative work",
+          "traits": { "adaptable": 3 }
+        },
+        {
+          "label": "I share artistic ideas with others",
+          "traits": { "social": 3 }
+        }
+      ]
+    },
+    {
+      "id": 11,
+      "question": "What is your approach to leadership?",
+      "options": [
+        {
+          "label": "I inspire and lead",
+          "traits": { "leadership": 3 }
+        },
+        {
+          "label": "I understand team needs",
+          "traits": { "empathetic": 3 }
+        },
+        {
+          "label": "I pay attention to details",
+          "traits": { "detail_oriented": 3 }
+        },
+        {
+          "label": "I stay calm under pressure",
+          "traits": { "stress_tolerant": 3 }
+        }
+      ]
+    }
+  ]
+}
